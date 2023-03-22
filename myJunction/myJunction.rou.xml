@@ -1,0 +1,39 @@
+<routes>
+    <vType id="car" vClass="passenger" color="144, 238, 144"/>
+    <vType id="bus" vClass="bus" color="255, 165, 0"/>
+    <vType id="truck" vClass="trailer" color="255,192,203"/>
+    <vType id="motorcycle" vClass="motorcycle" color="red"/>
+    <vType id="bicycle" vClass="bicycle" color="yellow"/>
+
+    <route id="route_01" edges="WtoJ JtoE EtoNE NEtoN NtoNW"/>
+    <route id="route_02" edges="WtoJ JtoE EtoSE SEtoS StoSW"/>
+    <route id="route_03" edges="NtoJ JtoS StoSW SWtoW WtoNW"/>
+    <route id="route_04" edges="NtoJ JtoS StoSE SEtoE EtoNE"/>
+ <!-- 
+    car
+  -->
+    <vehicle id="car_01" type="car" depart="0.00" route="route_01"/>
+    <vehicle id="car_02" type="car" depart="5.00" route="route_01"/>
+    <vehicle id="bicycle_03" type="bicycle" depart="10.00" route="route_03"/>
+    <vehicle id="car_03" type="car" depart="15.00" route="route_02"/>
+    <vehicle id="bicycle_04" type="bicycle" depart="20.00" route="route_04"/>
+    <vehicle id="bus_01" type="bus" depart="25.00" route="route_01"/>
+    <vehicle id="car_04" type="car" depart="30.00" route="route_02"/>
+    <vehicle id="truck_01" type="truck" depart="35.00" route="route_01"/>
+    <vehicle id="bus_02" type="bus" depart="40.00" route="route_02"/>
+    <vehicle id="car_05" type="car" depart="45.00" route="route_03"/>
+    <vehicle id="motorcycle_03" type="motorcycle" depart="50.00" route="route_03"/>
+    <vehicle id="motorcycle_01" type="motorcycle" depart="55.00" route="route_01"/>
+    <vehicle id="car_06" type="car" depart="60.00" route="route_03"/>
+    <vehicle id="bus_04" type="bus" depart="65.00" route="route_04"/>
+    <vehicle id="motorcycle_04" type="motorcycle" depart="70.00" route="route_04"/>
+    <vehicle id="truck_02" type="truck" depart="75.00" route="route_02"/>
+    <vehicle id="bus_03" type="bus" depart="80.00" route="route_03"/>
+    <vehicle id="bicycle_01" type="bicycle" depart="85.00" route="route_01"/>
+    <vehicle id="truck_03" type="truck" depart="95.00" route="route_03"/>
+    <vehicle id="truck_04" type="truck" depart="100.00" route="route_04"/>
+    <vehicle id="car_07" type="car" depart="105.00" route="route_04"/>
+    <vehicle id="motorcycle_02" type="motorcycle" depart="110.00" route="route_02"/>
+    <vehicle id="bicycle_02" type="bicycle" depart="115.00" route="route_02"/>
+    <vehicle id="car_08" type="car" depart="120.00" route="route_04"/>
+</routes>

@@ -1,0 +1,56 @@
+<additionals>
+
+<rerouter id="rerouter_01" edges="NtoNW" probability="0.8">
+        <interval end="1e9">
+           <destProbReroute id="EtoNE"/>
+        </interval>
+    </rerouter>
+
+<rerouter id="rerouter_02" edges="EtoNE" probability="0.8">
+        <interval end="1e9">
+           <destProbReroute id="NtoNW"/>
+        </interval>
+    </rerouter>
+
+<rerouter id="rerouter_03" edges="StoSW" probability="0.8">
+    <interval end="1e9">
+        <destProbReroute id="EtoSE"/>
+    </interval>
+</rerouter>
+
+<rerouter id="rerouter_04" edges="EtoSE" probability="0.8">
+    <interval end="1e9">
+        <destProbReroute id="StoSW"/>
+    </interval>
+</rerouter>
+
+<rerouter id="rerouter_05" edges="WtoNW" probability="0.7">
+    <interval end="1e9">
+        <destProbReroute id="StoSW"/>
+    </interval>
+</rerouter>
+
+<rerouter id="rerouter_06" edges="StoSW" probability="0.7">
+    <interval end="1e9">
+        <destProbReroute id="WtoNW"/>
+    </interval>
+</rerouter>
+
+<rerouter id="rerouter_07" edges="EtoNE" probability="0.7">
+    <interval end="1e9">
+        <destProbReroute id="StoSE"/>
+    </interval>
+</rerouter>
+
+<rerouter id="rerouter_08" edges="StoSE" probability="0.7">
+    <interval end="1e9">
+        <destProbReroute id="EtoNE"/>
+    </interval>
+</rerouter>
+
+<inductionLoop id="WtoJ" lane="WtoJ_0" pos="92.8" period="200" file="out.xml"/>
+<inductionLoop id="EtoJ" lane="EtoJ_0" pos="92.8" period="200" file="out.xml"/>
+<inductionLoop id="NtoJ" lane="NtoJ_0" pos="42.8" period="200" file="out.xml"/>
+<inductionLoop id="StoJ" lane="StoJ_0" pos="42.8" period="200" file="out.xml"/>
+
+</additionals>

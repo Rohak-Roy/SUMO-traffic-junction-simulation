@@ -1,0 +1,16 @@
+<additionals>
+    <rerouter id="rerouter_0" edges="E0">
+        <interval end="1e9">
+           <destProbReroute id="E2"/>
+        </interval>
+    </rerouter>
+
+    <rerouter id="rerouter_1" edges="E2">
+        <interval end="1e9">
+           <destProbReroute id="E0"/>
+        </interval>
+    </rerouter>
+
+    <inductionLoop id="myLoop1" lane="E0_0" pos="42" period="53" file="out.xml"/>
+
+</additionals>

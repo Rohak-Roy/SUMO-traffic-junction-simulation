@@ -1,0 +1,44 @@
+<routes>
+   <vType id="bus" vClass="bus"/>
+
+   <route id="busRoute" edges="-E0 -E3 -E2 -E1" color="yellow" repeat="10" cycleTime="140">
+        <stop busStop="bs_0" duration="30.00" until="30.00"/>
+        <stop busStop="bs_3" duration="30.00" until="90.00"/>
+    </route>
+
+    <route id="busRouteReverse" edges="E0 E1 E2 E3" color="yellow" repeat="10" cycleTime="140">
+        <stop busStop="bs_1" duration="30.00" until="30.00"/>
+        <stop busStop="bs_2" duration="30.00" until="90.00"/>
+    </route>
+
+    <vehicle id="bus1" type="bus" depart="0.00" line="42" route="busRoute"/>
+    <vehicle id="bus2" type="bus" depart="35.00" line="41" route="busRoute" color="cyan"/>
+    <vehicle id="bus3" type="bus" depart="0.00" line="43" route="busRouteReverse" color="red"/>
+    <vehicle id="bus4" type="bus" depart="35.00" line="43" route="busRouteReverse" color="green"/>
+
+    <vType id="tram" vClass="tram"/>
+
+    <route id="tramRoute" edges="E4 -E1 -E0" color="yellow" repeat="10" cycleTime="140">
+        <stop busStop="ts_1" duration="20.00" until="30.00"/>
+        <stop busStop="ts_2" duration="20.00" until="90.00"/>
+        <stop busStop="bs_0" duration="20.00" until="90.00"/>
+    </route>
+
+    <route id="tramRouteReverse" edges="-E4 -E3 -E2" color="yellow" repeat="10" cycleTime="140">
+        <stop busStop="ts_3" duration="20.00" until="30.00"/>
+        <stop busStop="ts_4" duration="20.00" until="90.00"/>
+        <stop busStop="bs_3" duration="20.00" until="90.00"/>
+    </route>
+
+    <vehicle id="tram" type="tram" depart="0.00" line="23" route="tramRoute"/>
+    <vehicle id="tramReverse" type="tram" depart="0.00" line="22" route="tramRouteReverse" color="blue"/>
+
+    <personFlow id="AB" begin="0" end="3600" probability="0.3">
+        <personTrip from="-E3" to="-E2" arrivalPos="-20" modes="public"/>
+    </personFlow>
+
+    <personFlow id="BC" begin="0" end="3600" probability="0.3">
+        <personTrip from="E1" to="E3" arrivalPos="-20" modes="public"/>
+    </personFlow>
+    
+</routes>

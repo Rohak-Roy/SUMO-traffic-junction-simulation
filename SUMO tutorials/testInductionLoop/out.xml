@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2023-03-22 12:27:19 by Eclipse SUMO GUI Version 1.16.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="C:\Users\rohak.roy\Sumo\testInductionLoop\testInductionLoop.net.xml"/>
+        <route-files value="C:\Users\rohak.roy\Sumo\testInductionLoop\testInductionLoop.rou.xml"/>
+        <additional-files value="C:\Users\rohak.roy\Sumo\testInductionLoop\testInductionLoop.add.xml"/>
+    </input>
+
+</configuration>
+-->
+
+<detector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/det_e1_file.xsd">
+    <interval begin="0.00" end="53.00" id="myLoop1" nVehContrib="1" flow="67.92" occupancy="0.74" speed="12.83" harmonicMeanSpeed="12.83" length="5.00" nVehEntered="1"/>
+    <interval begin="53.00" end="106.00" id="myLoop1" nVehContrib="1" flow="67.92" occupancy="0.70" speed="13.56" harmonicMeanSpeed="13.56" length="5.00" nVehEntered="1"/>
+    <interval begin="106.00" end="136.00" id="myLoop1" nVehContrib="1" flow="120.00" occupancy="1.14" speed="14.65" harmonicMeanSpeed="14.65" length="5.00" nVehEntered="1"/>
+</detector>

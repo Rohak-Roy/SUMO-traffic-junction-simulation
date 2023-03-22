@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2023-03-21 16:22:52 by Eclipse SUMO sumo Version 1.16.0
+-->
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="publicTransport.net.xml"/>
+        <additional-files value="publicTransport.add.xml"/>
+        <route-files value="publicTransport.rou.xml"/>
+    </input>
+
+</configuration>
