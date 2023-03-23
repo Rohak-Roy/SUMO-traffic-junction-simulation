@@ -1,5 +1,5 @@
 <routes>
-    <vType id="car" vClass="passenger" color="144, 238, 144"/>
+    <vType id="car" vClass="passenger" color="230,230,250"/>
     <vType id="bus" vClass="bus" color="255, 165, 0"/>
     <vType id="truck" vClass="trailer" color="255,192,203"/>
     <vType id="motorcycle" vClass="motorcycle" color="red"/>

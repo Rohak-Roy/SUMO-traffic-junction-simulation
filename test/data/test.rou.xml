@@ -1,0 +1,9 @@
+<routes>
+
+<vType id="car" vClass="passenger"/>
+
+<route id="route_01" edges="WtoJ JtoE EtoSE SEtoS StoSW"/>
+
+<vehicle id="car_01" type="car" depart="0.00" route="route_01"/>
+
+</routes>

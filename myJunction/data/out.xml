@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2023-03-23 12:03:43 by Eclipse SUMO sumo Version 1.16.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="data\myJunction.net.xml"/>
+        <route-files value="data\myJunction.rou.xml"/>
+        <additional-files value="data\myJunction.add.xml"/>
+    </input>
+
+    <traci_server>
+        <remote-port value="63790"/>
+    </traci_server>
+
+</configuration>
+-->
+
+<detector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/det_e1_file.xsd">
+    <interval begin="0.00" end="200.00" id="WtoJ" nVehContrib="16" flow="288.00" occupancy="5.54" speed="10.63" harmonicMeanSpeed="9.14" length="7.41" nVehEntered="16"/>
+    <interval begin="0.00" end="200.00" id="EtoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+    <interval begin="0.00" end="200.00" id="NtoJ" nVehContrib="18" flow="324.00" occupancy="24.55" speed="6.80" harmonicMeanSpeed="1.90" length="6.41" nVehEntered="18"/>
+    <interval begin="0.00" end="200.00" id="StoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+    <interval begin="200.00" end="400.00" id="WtoJ" nVehContrib="9" flow="162.00" occupancy="2.80" speed="12.84" harmonicMeanSpeed="12.78" length="8.18" nVehEntered="9"/>
+    <interval begin="200.00" end="400.00" id="EtoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+    <interval begin="200.00" end="400.00" id="NtoJ" nVehContrib="9" flow="162.00" occupancy="4.07" speed="7.83" harmonicMeanSpeed="7.10" length="7.08" nVehEntered="9"/>
+    <interval begin="200.00" end="400.00" id="StoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+    <interval begin="400.00" end="600.00" id="WtoJ" nVehContrib="3" flow="54.00" occupancy="1.15" speed="12.79" harmonicMeanSpeed="12.68" length="10.23" nVehEntered="3"/>
+    <interval begin="400.00" end="600.00" id="EtoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+    <interval begin="400.00" end="600.00" id="NtoJ" nVehContrib="11" flow="198.00" occupancy="5.52" speed="6.82" harmonicMeanSpeed="5.35" length="6.36" nVehEntered="11"/>
+    <interval begin="400.00" end="600.00" id="StoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+    <interval begin="600.00" end="800.00" id="WtoJ" nVehContrib="5" flow="90.00" occupancy="2.54" speed="8.19" harmonicMeanSpeed="6.66" length="6.78" nVehEntered="5"/>
+    <interval begin="600.00" end="800.00" id="EtoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+    <interval begin="600.00" end="800.00" id="NtoJ" nVehContrib="5" flow="90.00" occupancy="3.97" speed="9.57" harmonicMeanSpeed="8.62" length="12.74" nVehEntered="5"/>
+    <interval begin="600.00" end="800.00" id="StoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+    <interval begin="800.00" end="1000.00" id="WtoJ" nVehContrib="1" flow="18.00" occupancy="0.09" speed="12.24" harmonicMeanSpeed="12.24" length="2.20" nVehEntered="1"/>
+    <interval begin="800.00" end="1000.00" id="EtoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+    <interval begin="800.00" end="1000.00" id="NtoJ" nVehContrib="8" flow="144.00" occupancy="4.49" speed="11.78" harmonicMeanSpeed="11.74" length="13.03" nVehEntered="8"/>
+    <interval begin="800.00" end="1000.00" id="StoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+    <interval begin="1000.00" end="1174.00" id="WtoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+    <interval begin="1000.00" end="1174.00" id="EtoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+    <interval begin="1000.00" end="1174.00" id="NtoJ" nVehContrib="4" flow="82.76" occupancy="3.33" speed="10.58" harmonicMeanSpeed="10.57" length="15.38" nVehEntered="4"/>
+    <interval begin="1000.00" end="1174.00" id="StoJ" nVehContrib="0" flow="0.00" occupancy="0.00" speed="-1.00" harmonicMeanSpeed="-1.00" length="-1.00" nVehEntered="0"/>
+</detector>

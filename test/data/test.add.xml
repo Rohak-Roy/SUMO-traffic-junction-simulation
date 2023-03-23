@@ -1,0 +1,15 @@
+<additionals>
+
+<rerouter id="rerouter_01" edges="StoSW">
+    <interval end="1e9">
+        <destProbReroute id="EtoSE"/>
+    </interval>
+</rerouter>
+
+<rerouter id="rerouter_02" edges="EtoSE">
+    <interval end="1e9">
+        <destProbReroute id="StoSW"/>
+    </interval>
+</rerouter>
+
+</additionals>
