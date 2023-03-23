@@ -29,12 +29,17 @@ while traci.simulation.getMinExpectedNumber() > 0:
 
     traci.simulationStep()
     counter += 1
-
-    # vehicles = traci.vehicle.getIDList()
-
-    # print("Iteration", counter, " = ", vehicles)
+    print("Iteration = ", counter)
 
     vehicles = traci.edge.getLastStepVehicleIDs("WtoJ")
-    print("Iteration", counter, " = ", vehicles)
+    print("VEHICLES ON 'WtoJ' EDGE = ", vehicles)
 
+    haltingVehicles = traci.edge.getLastStepHaltingNumber("WtoJ")
+    print("NUMBER OF HALTING VEHICLES  = ", haltingVehicles)
+
+    waitingTime = traci.edge.getWaitingTime("WtoJ")
+    print("SUM OF WAITING TIMES = ", waitingTime)
+
+    distanceFromSignal = traci.vehicle.getDrivingDistance("car_01", "JtoE", 100)
+    print(distanceFromSignal)
 traci.close()
