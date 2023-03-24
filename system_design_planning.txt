@@ -23,7 +23,7 @@ For each lane:
 
 Hyperparameters:
 
-1 - Threshold for waiting time.
+1 - Threshold for number of stopped vehicles at the traffic light.
 2 - Threshold for difference of mean number of vehicles between opposite directions of traffic flow.
 3 - Threshold for difference of large vehicles between opposite directions of traffic flow.
 
