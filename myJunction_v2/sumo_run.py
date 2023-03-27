@@ -2,7 +2,7 @@ from generate_routes import generate_routefile
 import traci 
 import os
 import sys
-from classes_and_methods import LaneInfo, getVehicleInfo, printLaneInfo
+from classes_and_methods import LaneInfo, getVehicleInfo, printLaneInfo, getLaneInfo
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
@@ -14,33 +14,23 @@ sumoCmd = ["sumo", "-c", "data\myJunction.sumocfg"]
 traci.start(sumoCmd)
 
 stepCounter = 0
-laneWtoJ = LaneInfo()
 
 while traci.simulation.getMinExpectedNumber() > 0:
 
     traci.simulationStep()
     stepCounter += 1
-    print('\nIteration = ', stepCounter)
+    print(f'\nIteration = {stepCounter}')
 
-    allVehicles = traci.edge.getLastStepVehicleIDs("WtoJ")
-    laneWtoJ.vehiclesStopped = traci.edge.getLastStepHaltingNumber("WtoJ")
-    laneWtoJ.totalNumOfVeh = traci.edge.getLastStepVehicleNumber("WtoJ")
+    laneWtoJ = getLaneInfo("WtoJ")
+    printLaneInfo(laneWtoJ, "Information about lane West to East:")
 
-    carInfo = getVehicleInfo(allVehicles, 'car')
-    laneWtoJ.carInfo.update(carInfo)
+    laneEtoJ = getLaneInfo("EtoJ")
+    printLaneInfo(laneEtoJ, "Information about lane East to West:")
 
-    busInfo = getVehicleInfo(allVehicles, 'bus')
-    laneWtoJ.busInfo.update(busInfo)
+    laneNtoJ = getLaneInfo("NtoJ")
+    printLaneInfo(laneNtoJ, "Information about lane North to South:")
 
-    truckInfo = getVehicleInfo(allVehicles, 'truck')
-    laneWtoJ.truckInfo.update(truckInfo)
-
-    motorcycleInfo = getVehicleInfo(allVehicles, 'motorcycle')
-    laneWtoJ.motorcycleInfo.update(motorcycleInfo)
-
-    bicycleInfo = getVehicleInfo(allVehicles, 'bicycle')
-    laneWtoJ.bicycleInfo.update(bicycleInfo)
-
-    printLaneInfo(laneWtoJ)
+    laneStoJ = getLaneInfo("StoJ")
+    printLaneInfo(laneStoJ, "Information about lane South to North:")
 
 traci.close()

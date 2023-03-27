@@ -14,10 +14,10 @@ def generate_routefile():
     <vType id="mini-truck" vClass="delivery" color="blue"/>
     <vType id="van" vClass="hov" color="green"/>
 
-    <route id="route_01" edges="WtoJ JtoE EtoNE NEtoN NtoNW"/>
-    <route id="route_02" edges="EtoJ JtoW WtoNW NWtoN NtoNE"/>
-    <route id="route_03" edges="NtoJ JtoS StoSW SWtoW WtoNW"/>
-    <route id="route_04" edges="StoJ JtoN NtoNE NEtoE EtoSE"/>
+    <route id="route_01" edges="BWtoW WtoJ JtoE EtoBE BEtoNE NEtoBN"/>
+    <route id="route_02" edges="BEtoE EtoJ JtoW WtoBW BWtoNW NWtoBN"/>
+    <route id="route_03" edges="BNtoN NtoJ JtoS StoBS BStoSW SWtoBW"/>
+    <route id="route_04" edges="BStoS StoJ JtoN NtoBN BNtoNE NEtoBE"/>
     """, file=routes)
 
         carNum, busNum, truckNum, motorcycleNum, bicycleNum = 0, 0, 0, 0, 0
