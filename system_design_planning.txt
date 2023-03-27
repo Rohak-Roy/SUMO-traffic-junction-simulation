@@ -3,7 +3,7 @@ Parameters for model:
 For each lane:
 
 1 - Number of vehicles currently stopped at traffic light.
-2 - Mean number of vehicles.
+2 - Total number of vehicles.
 2 - Number of cars, buses, trucks, motorcycles, bicycles.
 4 - Mean speed of cars, buses, trucks, motorcycles, bicycles.
 5 - Mean distance from traffic light of cars, buses, trucks, motorcycles, bicycles.
@@ -23,8 +23,8 @@ For each lane:
 
 Hyperparameters:
 
-1 - Threshold for number of stopped vehicles at the traffic light.
-2 - Threshold for difference of mean number of vehicles between opposite directions of traffic flow.
+1 - Threshold for total number of stopped vehicles at the traffic light.
+2 - Threshold for difference of number of vehicles between opposite directions of traffic flow.
 3 - Threshold for difference of large vehicles between opposite directions of traffic flow.
 
 -----------------------------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ Note to self:
 1 - For any given lane, if a certain threshold for the number of vehicles currently stopped at the 
 traffic light has been surpassed, then change signal to green regardless of traffic at other lanes.
 
-2 - If the difference of mean number of vehicles in two opposite directions of traffic flow is 
+2 - If the difference of total number of vehicles in two opposite directions of traffic flow is 
 greater than a certain threshold then change respective signals to green to allow traffic volume in 
 those lanes to reduce.
 
