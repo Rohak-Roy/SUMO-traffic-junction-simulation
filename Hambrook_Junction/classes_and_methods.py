@@ -5,6 +5,7 @@ class EdgeInfo:
         self.vehiclesStopped = 0
         self.totalNumOfVeh = 0
         self.CO2Emission = 0
+        self.waitingTime = 0
         self.carInfo = {"Number": 0, "Mean Speed": 0, "Mean Distance from Traffic Light": 0}
         self.busInfo = {"Number": 0, "Mean Speed": 0, "Mean Distance from Traffic Light": 0}
         self.truckInfo = {"Number": 0, "Mean Speed": 0, "Mean Distance from Traffic Light": 0}
@@ -16,6 +17,7 @@ class LaneInfo:
         self.vehiclesStopped = 0
         self.totalNumOfVeh = 0
         self.CO2Emission = 0
+        self.waitingTime = 0
         self.carInfo = {"Number": 0, "Mean Speed": 0, "Mean Distance from Traffic Light": 0}
         self.busInfo = {"Number": 0, "Mean Speed": 0, "Mean Distance from Traffic Light": 0}
         self.truckInfo = {"Number": 0, "Mean Speed": 0, "Mean Distance from Traffic Light": 0}
@@ -44,6 +46,7 @@ def getEdgeInfo(edgeID):
     edgeInfo.vehiclesStopped = traci.edge.getLastStepHaltingNumber(edgeID)
     edgeInfo.totalNumOfVeh = traci.edge.getLastStepVehicleNumber(edgeID)
     edgeInfo.CO2Emission = traci.edge.getCO2Emission(edgeID)
+    edgeInfo.waitingTime = traci.edge.getWaitingTime(edgeID)
 
     carInfo = getVehicleInfo(allVehicles, 'car')
     edgeInfo.carInfo.update(carInfo)
@@ -66,6 +69,7 @@ def printEdgeInfo(edgeInfo, title=""):
     print(f'\n{title}')
     print(f'Number of vehicles currently stopped at traffic light= {edgeInfo.vehiclesStopped}')
     print(f'Total number of vehicles = {edgeInfo.totalNumOfVeh}')
+    print(f'Total waiting time of vehicles = {edgeInfo.waitingTime}')
     print(f'Car Info = {edgeInfo.carInfo}')
     print(f'Bus Info = {edgeInfo.busInfo}')
     print(f'Truck Info = {edgeInfo.truckInfo}')
@@ -80,6 +84,7 @@ def getLaneInfo(laneID):
     laneInfo.vehiclesStopped = traci.lane.getLastStepHaltingNumber(laneID)
     laneInfo.totalNumOfVeh = traci.lane.getLastStepVehicleNumber(laneID)
     laneInfo.CO2Emission = traci.lane.getCO2Emission(laneID)
+    laneInfo.waitingTime = traci.lane.getWaitingTime(laneID)
 
     carInfo = getVehicleInfo(allVehicles, 'car')
     laneInfo.carInfo.update(carInfo)
@@ -102,6 +107,7 @@ def printSingleLaneInfo(laneInfo, title=""):
     print(f'\n{title}')
     print(f'Number of vehicles currently stopped at traffic light= {laneInfo.vehiclesStopped}')
     print(f'Total number of vehicles = {laneInfo.totalNumOfVeh}')
+    print(f'Total waiting time of vehicles = {laneInfo.waitingTime}')
     print(f'Car Info = {laneInfo.carInfo}')
     print(f'Bus Info = {laneInfo.busInfo}')
     print(f'Truck Info = {laneInfo.truckInfo}')

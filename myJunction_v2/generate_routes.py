@@ -24,7 +24,7 @@ def generate_routefile():
         r1, r2, r3, r4 = 0, 0, 0, 0
         departTime = 0
         departTimeToggle = True
-        intervalTime = 10
+        intervalTime = 8
 
         for i in range(steps):
             departTimeToggle = True
