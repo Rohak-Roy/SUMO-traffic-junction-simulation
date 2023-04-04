@@ -1,6 +1,8 @@
 import traci
 import numpy as np
 
+timeForPredictingVehAtTLS = 10
+
 class EdgeInfo:
     def __init__(self):
         self.vehiclesStopped = 0
@@ -12,6 +14,7 @@ class EdgeInfo:
         self.truckInfo = {"Number": 0, "Mean Speed": 0, "Mean Distance from Traffic Light": 0}
         self.motorcycleInfo = {"Number": 0, "Mean Speed": 0, "Mean Distance from Traffic Light": 0}
         self.bicycleInfo = {"Number": 0, "Mean Speed": 0, "Mean Distance from Traffic Light": 0}
+        self.predictedVehiclesAtTLS = {"Time": 0, "Number": 0}
 
 class LaneInfo:
     def __init__(self):
@@ -32,6 +35,7 @@ class WeightInfo:
         self.CO2Emission = 0
         self.vehicles = {"Car": 0, "Bus": 0, "Truck": 0, "Motorcycle": 0, "Bicycle": 0}
         self.totalWeight = 0
+        self.predictedVehiclesAtTLS = 0
 
 def getVehicleInfo(allVehicles, vehicleType):
     vehicles =  [item for item in allVehicles if vehicleType in item]
@@ -56,6 +60,9 @@ def getEdgeInfo(edgeID):
     edgeInfo.totalNumOfVeh = traci.edge.getLastStepVehicleNumber(edgeID)
     edgeInfo.CO2Emission = traci.edge.getCO2Emission(edgeID)
     edgeInfo.waitingTime = traci.edge.getWaitingTime(edgeID)
+
+    predictedVehiclesAtTLSInfo = getNumOfPredictedVehicles(edgeID, timeForPredictingVehAtTLS)
+    edgeInfo.predictedVehiclesAtTLS.update(predictedVehiclesAtTLSInfo)
 
     carInfo = getVehicleInfo(allVehicles, 'car')
     edgeInfo.carInfo.update(carInfo)
@@ -85,6 +92,7 @@ def printEdgeInfo(edgeInfo, title=""):
     print(f'Motorcycle Info = {edgeInfo.motorcycleInfo}')
     print(f'Bicycle Info = {edgeInfo.bicycleInfo}')
     print(f'Carbon Emissions released = {edgeInfo.CO2Emission}')
+    print(f'Number of vehicles predicted at traffic light after {edgeInfo.predictedVehiclesAtTLS["Time"]}s = {edgeInfo.predictedVehiclesAtTLS["Number"]}')
 
 def getLaneInfo(laneID):
     allVehicles = traci.lane.getLastStepVehicleIDs(laneID)
@@ -140,13 +148,29 @@ def getLaneIDsFromEdgeID(edgeID):
     return laneIDs
 
 # An exponential graph where f(4) = 2, f(6) = 4, f(8) = 8, f(10) = 16, f(12) = 32 and so on.
-def exponential(x, coefficient=1):
-    y = coefficient * (1/2 * np.exp(1/2.88539008178 * x))
+def exponential(x, vertical_stretch=1/2, coefficient=1):
+    y = coefficient * (vertical_stretch * np.exp(1/2.88539008178 * x))
     return y
 
 def logarithm(x):
     y = np.log2(x)
     return y
+
+def getNumOfPredictedVehicles(edgeID, time):
+    allVehicles = traci.edge.getLastStepVehicleIDs(edgeID)
+
+    if len(allVehicles) != 0:
+        nextTLS = list(map(traci.vehicle.getNextTLS, allVehicles))
+        distancesFromTLS = [item[0][2] for item in nextTLS]
+        vehicleSpeeds = list(map(traci.vehicle.getSpeed, allVehicles))
+        filteredVehicleSpeeds = [item for item in vehicleSpeeds if item > 3]
+        distanceCoveredInGivenTime = [item * time for item in filteredVehicleSpeeds]
+        predictedDistanceFromTLS = [(x - y) for x,y in zip(distancesFromTLS, distanceCoveredInGivenTime)]
+        numOfPredictedVehiclesAtTLS = len([item for item in predictedDistanceFromTLS if item < 1.1])
+        
+        return {"Time": time, "Number": numOfPredictedVehiclesAtTLS}
+
+    return {"Time": time, "Number": 0}
 
 def getWeightInfo(edgeInfo1, edgeInfo2):
     weight = WeightInfo()
@@ -163,12 +187,14 @@ def getWeightInfo(edgeInfo1, edgeInfo2):
     numOfTrucks = edgeInfo1.truckInfo["Number"] + edgeInfo2.truckInfo["Number"]
     numOfMotorcycles = edgeInfo1.motorcycleInfo["Number"] + edgeInfo2.motorcycleInfo["Number"]
     numOfBicycles = edgeInfo1.bicycleInfo["Number"] + edgeInfo2.bicycleInfo["Number"]
+    numOfPredictedVehiclesAtTLS = edgeInfo1.predictedVehiclesAtTLS["Number"] + edgeInfo2.predictedVehiclesAtTLS["Number"]
 
     weight.vehiclesStopped = exponential(numOfVehiclesStopped)
     weight.waitingTime = logarithm(totalWaitingTime)
     weight.CO2Emission = logarithm(totalCO2Emission)
+    weight.predictedVehiclesAtTLS = exponential(numOfPredictedVehiclesAtTLS, vertical_stretch=1.5)
 
-    weight.vehicles["Car"] = exponential(numOfCars, 0.5)
+    weight.vehicles["Car"] = logarithm(numOfCars)
     weight.vehicles["Bus"] = exponential(numOfBuses, 1)
     weight.vehicles["Truck"] = exponential(numOfTrucks, 1)
     weight.vehicles["Motorcycles"] = exponential(numOfMotorcycles, 0.25)
@@ -178,7 +204,7 @@ def getWeightInfo(edgeInfo1, edgeInfo2):
     return weight
 
 def getTotalWeight(weightInfo):
-    totalWeight = weightInfo.vehiclesStopped + weightInfo.waitingTime + weightInfo.CO2Emission
+    totalWeight = weightInfo.vehiclesStopped + weightInfo.waitingTime + weightInfo.CO2Emission + weightInfo.predictedVehiclesAtTLS
     
     for item in weightInfo.vehicles:
         totalWeight += weightInfo.vehicles[item]
@@ -195,4 +221,5 @@ def printWeightInfo(weightInfo, title=""):
     print(f'Weight due to number of trucks = {weightInfo.vehicles["Truck"]}')
     print(f'Weight due to number of motorcycles = {weightInfo.vehicles["Motorcycle"]}')
     print(f'Weight due to number of bicycles = {weightInfo.vehicles["Bicycle"]}')
+    print(f'Weight due to number of vehicles predicted at traffic light = {weightInfo.predictedVehiclesAtTLS}')
     print(f'Total Weight = {weightInfo.totalWeight}')

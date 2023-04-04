@@ -5,5 +5,9 @@
 <route id="route_01" edges="WtoJ JtoE EtoSE SEtoS StoSW"/>
 
 <vehicle id="car_01" type="car" depart="0.00" route="route_01"/>
+<vehicle id="car_02" type="car" depart="5.00" route="route_01"/>
+<vehicle id="car_03" type="car" depart="10.00" route="route_01"/>
+<vehicle id="car_04" type="car" depart="15.00" route="route_01"/>
+<vehicle id="car_05" type="car" depart="20.00" route="route_01"/>
 
 </routes>

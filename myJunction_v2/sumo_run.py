@@ -40,29 +40,5 @@ while traci.simulation.getMinExpectedNumber() > 0:
 
     weights_vertical_flow = getWeightInfo(edge_NtoJ, edge_StoJ)
     printWeightInfo(weights_vertical_flow, "Information about weights about Road in direction North to South")
-
-    # weightNumOfVehStopped_horizontal = exponential(edge_WtoJ.vehiclesStopped + edge_EtoJ.vehiclesStopped)
-    # weightNumOfVehStopped_vertical = exponential(edge_NtoJ.vehiclesStopped + edge_StoJ.vehiclesStopped)
-    
-    # weightWaitingTime_horizontal = exponential(edge_WtoJ.waitingTime + edge_EtoJ.waitingTime)
-    # weightWaitingTime_vertical = exponential(edge_NtoJ.waitingTime + edge_StoJ.waitingTime)
-
-    # weightCarbonEmissions_horizontal = logarithm(edge_WtoJ.CO2Emission + edge_EtoJ.CO2Emission)
-    # weightCarbonEmissions_vertical = logarithm(edge_NtoJ.CO2Emission + edge_StoJ.CO2Emission)
-
-    # weightNumOfTrucks_horizontal = exponential(edge_WtoJ.truckInfo["Number"] + edge_EtoJ.truckInfo["Number"])
-    # weightNumOfTrucks_vertical = exponential(edge_NtoJ.truckInfo["Number"] + edge_StoJ.truckInfo["Number"])
-
-    # print(f"\nweight due to number of vehicles stopped in the horizontal direction = {weightNumOfVehStopped_horizontal}")
-    # print(f"weight due to number of vehicles stopped in the vertical direction = {weightNumOfVehStopped_vertical}")
-    
-    # print(f"\nweight due to waiting time of vehicles stopped in the horizontal direction = {weightWaitingTime_horizontal}")
-    # print(f"weight due to waiting time of vehicles stopped in the vertical direction = {weightWaitingTime_vertical}")
-
-    # print(f"\nweight due to carbon emissions  of vehicles  in the horizontal direction = {weightCarbonEmissions_horizontal}")
-    # print(f"weight due to carbon emissions  of vehicles  in the vertical direction = {weightCarbonEmissions_vertical}")
-
-    # print(f"\nweight due to number of trucks in the horizontal direction = {weightNumOfTrucks_horizontal}")
-    # print(f"weight due to number of trucks in the vertical direction = {weightNumOfTrucks_vertical}")
     
 traci.close()
