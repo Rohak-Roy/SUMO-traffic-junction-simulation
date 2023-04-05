@@ -32,29 +32,29 @@ while traci.simulation.getMinExpectedNumber() > 0:
     counter += 1
     print("\nIteration = ", counter)
 
-    vehicles = traci.edge.getLastStepVehicleIDs("WtoJ")
-    print("VEHICLES ON 'WtoJ' EDGE = ", vehicles)
+    allVehicles = traci.edge.getLastStepVehicleIDs("WtoJ")
+    print("VEHICLES ON 'WtoJ' EDGE = ", allVehicles)
 
-    nextTLS = list(map(traci.vehicle.getNextTLS, vehicles))
+    if len(allVehicles) != 0:
+        nextTLS = list(map(traci.vehicle.getNextTLS, allVehicles))
 
-    if len(vehicles) != 0:
+        distancesFromTLS = [item[0][2] for item in nextTLS]
+        print(f'Distances from TLS are = {distancesFromTLS}')
 
-        distanceFromTLS = [item[0][2] for item in nextTLS]
-        print(f"Distances from traffic light = {distanceFromTLS}")
+        vehicleSpeeds = list(map(traci.vehicle.getSpeed, allVehicles))
+        print(f'Vehicle speeds are = {vehicleSpeeds}')
 
-        vehicleSpeeds = list(map(traci.vehicle.getSpeed, vehicles))
-        print(f"Speed of vehicles = {vehicleSpeeds}")
+        filteredVehicleSpeeds = [item for item in vehicleSpeeds if item > 3]
+        print(f'Filtered speed of vehicles are = {filteredVehicleSpeeds}')
 
-        distanceCovered = [item * setTime for item in vehicleSpeeds]
-        print(f"Distance Covered after 5 seconds = {distanceCovered}")
+        distanceCoveredInGivenTime = [item * 10 for item in filteredVehicleSpeeds]
+        print(f'Distance vehicles will cover in 10 secs = {distanceCoveredInGivenTime}')
 
-        currentAndFutureDistances = list(zip(distanceFromTLS, distanceCovered))
+        predictedDistanceFromTLS = [(x - y) for x,y in zip(distancesFromTLS, distanceCoveredInGivenTime)]
+        print(f'Predicted distances of vehicles from TLS after 10 secs = {predictedDistanceFromTLS}')
 
-        predictedDistanceFromTLS = [(x - y) for x,y in currentAndFutureDistances]
-        print(f"Predicted Distance from traffic light after {setTime}s is = {predictedDistanceFromTLS}")
-
-        numOfPredictedVehAtTLS = len([item for item in predictedDistanceFromTLS if item < 1.1])
-        print(f"Number vehicles predicted to be at traffic light after {setTime}s is = {numOfPredictedVehAtTLS}")
+        numOfPredictedVehiclesAtTLS = len([item for item in predictedDistanceFromTLS if item < 1.1])
+        print(f'Number of vehicles predicted to be at the traffic light after 10 secs = {numOfPredictedVehiclesAtTLS}')
 
     else:
         print(0)

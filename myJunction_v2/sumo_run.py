@@ -14,9 +14,9 @@ sumoCmd = ["sumo-gui", "-c", "data\myJunction.sumocfg"]
 traci.start(sumoCmd)
 
 edgeIDs = ["WtoJ", "EtoJ", "NtoJ", "StoJ"]
+weightDifferenceThreshold = 15
 
 stepCounter = 0
-
 while traci.simulation.getMinExpectedNumber() > 0:
 
     traci.simulationStep()
@@ -40,5 +40,17 @@ while traci.simulation.getMinExpectedNumber() > 0:
 
     weights_vertical_flow = getWeightInfo(edge_NtoJ, edge_StoJ)
     printWeightInfo(weights_vertical_flow, "Information about weights about Road in direction North to South")
+
+    print(f'\nWeight Difference = {abs(weights_horizontal_flow.totalWeight - weights_vertical_flow.totalWeight)}')
+
+    if abs(weights_horizontal_flow.totalWeight - weights_vertical_flow.totalWeight) > weightDifferenceThreshold:
+
+        if weights_horizontal_flow.totalWeight > weights_vertical_flow.totalWeight:
+            if traci.trafficlight.getPhase("Junction") == 0 or traci.trafficlight.getPhase("Junction") == 3:
+                traci.trafficlight.setPhase("Junction", 1)
+
+        elif weights_vertical_flow.totalWeight > weights_horizontal_flow.totalWeight:
+            if traci.trafficlight.getPhase("Junction") == 2 or traci.trafficlight.getPhase("Junction") == 1:
+                traci.trafficlight.setPhase("Junction", 3)
     
 traci.close()

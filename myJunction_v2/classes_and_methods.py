@@ -34,8 +34,8 @@ class WeightInfo:
         self.waitingTime = 0
         self.CO2Emission = 0
         self.vehicles = {"Car": 0, "Bus": 0, "Truck": 0, "Motorcycle": 0, "Bicycle": 0}
-        self.totalWeight = 0
         self.predictedVehiclesAtTLS = 0
+        self.totalWeight = 0
 
 def getVehicleInfo(allVehicles, vehicleType):
     vehicles =  [item for item in allVehicles if vehicleType in item]
@@ -152,8 +152,12 @@ def exponential(x, vertical_stretch=1/2, coefficient=1):
     y = coefficient * (vertical_stretch * np.exp(1/2.88539008178 * x))
     return y
 
+def decayForTimeSinceTLSChange(x):
+    y = 30 * (np.exp(-1/3.69269373069 * x))
+    return y
+
 def logarithm(x):
-    y = np.log2(x)
+    y = np.log2(x + 1)
     return y
 
 def getNumOfPredictedVehicles(edgeID, time):
@@ -177,10 +181,6 @@ def getWeightInfo(edgeInfo1, edgeInfo2):
 
     numOfVehiclesStopped = edgeInfo1.vehiclesStopped + edgeInfo2.vehiclesStopped
     totalWaitingTime = edgeInfo1.waitingTime + edgeInfo2.waitingTime
-
-    if totalWaitingTime < 1:
-        totalWaitingTime = 1
-        
     totalCO2Emission = edgeInfo1.CO2Emission + edgeInfo2.CO2Emission
     numOfCars = edgeInfo1.carInfo["Number"] + edgeInfo2.carInfo["Number"]
     numOfBuses = edgeInfo1.busInfo["Number"] + edgeInfo2.busInfo["Number"]
@@ -189,10 +189,10 @@ def getWeightInfo(edgeInfo1, edgeInfo2):
     numOfBicycles = edgeInfo1.bicycleInfo["Number"] + edgeInfo2.bicycleInfo["Number"]
     numOfPredictedVehiclesAtTLS = edgeInfo1.predictedVehiclesAtTLS["Number"] + edgeInfo2.predictedVehiclesAtTLS["Number"]
 
-    weight.vehiclesStopped = exponential(numOfVehiclesStopped)
+    weight.vehiclesStopped = logarithm(numOfVehiclesStopped)
     weight.waitingTime = logarithm(totalWaitingTime)
     weight.CO2Emission = logarithm(totalCO2Emission)
-    weight.predictedVehiclesAtTLS = exponential(numOfPredictedVehiclesAtTLS, vertical_stretch=1.5)
+    weight.predictedVehiclesAtTLS = exponential(numOfPredictedVehiclesAtTLS, vertical_stretch=3)
 
     weight.vehicles["Car"] = logarithm(numOfCars)
     weight.vehicles["Bus"] = exponential(numOfBuses, 1)

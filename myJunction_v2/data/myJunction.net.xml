@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2023-04-04 16:43:08 by Eclipse SUMO netedit Version 1.16.0
+<!-- generated on 2023-04-05 11:21:00 by Eclipse SUMO netedit Version 1.16.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
@@ -121,10 +121,10 @@
         <lane id=":Begin-West_5_0" index="0" speed="13.89" length="14.40" shape="-1998.40,-7.20 -1998.40,7.20"/>
     </edge>
     <edge id=":East_0" function="internal">
-        <lane id=":East_0_0" index="0" speed="13.89" length="0.10" shape="750.00,1.60 750.00,1.60"/>
+        <lane id=":East_0_0" index="0" speed="13.89" length="0.10" shape="500.00,1.60 500.00,1.60"/>
     </edge>
     <edge id=":East_1" function="internal">
-        <lane id=":East_1_0" index="0" speed="13.89" length="0.10" shape="750.00,-1.60 750.00,-1.60"/>
+        <lane id=":East_1_0" index="0" speed="13.89" length="0.10" shape="500.00,-1.60 500.00,-1.60"/>
     </edge>
     <edge id=":Junction_0" function="internal">
         <lane id=":Junction_0_0" index="0" speed="13.89" length="14.40" shape="-1.60,7.20 -1.60,-7.20"/>
@@ -139,10 +139,10 @@
         <lane id=":Junction_3_0" index="0" speed="13.89" length="14.40" shape="-7.20,-1.60 7.20,-1.60"/>
     </edge>
     <edge id=":North_0" function="internal">
-        <lane id=":North_0_0" index="0" speed="13.89" length="0.10" shape="-1.60,750.00 -1.60,750.00"/>
+        <lane id=":North_0_0" index="0" speed="13.89" length="0.10" shape="-1.60,500.00 -1.60,500.00"/>
     </edge>
     <edge id=":North_1" function="internal">
-        <lane id=":North_1_0" index="0" speed="13.89" length="0.10" shape="1.60,750.00 1.60,750.00"/>
+        <lane id=":North_1_0" index="0" speed="13.89" length="0.10" shape="1.60,500.00 1.60,500.00"/>
     </edge>
     <edge id=":North_East_0" function="internal">
         <lane id=":North_East_0_0" index="0" speed="6.08" length="7.74" shape="2001.60,1996.80 2001.30,1998.90 2000.40,2000.40 1998.90,2001.30 1996.80,2001.60"/>
@@ -157,10 +157,10 @@
         <lane id=":North_West_1_0" index="0" speed="3.90" length="2.58" shape="-1998.40,1996.80 -1998.30,1997.50 -1998.00,1998.00 -1997.50,1998.30 -1996.80,1998.40"/>
     </edge>
     <edge id=":South_0" function="internal">
-        <lane id=":South_0_0" index="0" speed="13.89" length="0.10" shape="-1.60,-750.00 -1.60,-750.00"/>
+        <lane id=":South_0_0" index="0" speed="13.89" length="0.10" shape="-1.60,-500.00 -1.60,-500.00"/>
     </edge>
     <edge id=":South_1" function="internal">
-        <lane id=":South_1_0" index="0" speed="13.89" length="0.10" shape="1.60,-750.00 1.60,-750.00"/>
+        <lane id=":South_1_0" index="0" speed="13.89" length="0.10" shape="1.60,-500.00 1.60,-500.00"/>
     </edge>
     <edge id=":South_East_0" function="internal">
         <lane id=":South_East_0_0" index="0" speed="3.90" length="2.58" shape="1998.40,-1996.80 1998.30,-1997.50 1998.00,-1998.00 1997.50,-1998.30 1996.80,-1998.40"/>
@@ -182,7 +182,7 @@
     </edge>
 
     <edge id="BEtoE" from="Begin-East" to="East" priority="-1">
-        <lane id="BEtoE_0" index="0" speed="13.89" length="1242.80" shape="1992.80,1.60 750.00,1.60"/>
+        <lane id="BEtoE_0" index="0" speed="13.89" length="1492.80" shape="1992.80,1.60 500.00,1.60"/>
     </edge>
     <edge id="BEtoNE" from="Begin-East" to="North_East" priority="-1">
         <lane id="BEtoNE_0" index="0" speed="13.89" length="1989.60" shape="2001.60,7.20 2001.60,1996.80"/>
@@ -191,7 +191,7 @@
         <lane id="BEtoSE_0" index="0" speed="13.89" length="1989.60" shape="1998.40,-7.20 1998.40,-1996.80"/>
     </edge>
     <edge id="BNtoN" from="Begin-North" to="North" priority="-1">
-        <lane id="BNtoN_0" index="0" speed="13.89" length="1242.80" shape="-1.60,1992.80 -1.60,750.00"/>
+        <lane id="BNtoN_0" index="0" speed="13.89" length="1492.80" shape="-1.60,1992.80 -1.60,500.00"/>
     </edge>
     <edge id="BNtoNE" from="Begin-North" to="North_East" priority="-1">
         <lane id="BNtoNE_0" index="0" speed="13.89" length="1989.60" shape="7.20,1998.40 1996.80,1998.40"/>
@@ -200,7 +200,7 @@
         <lane id="BNtoNW_0" index="0" speed="13.89" length="1989.60" shape="-7.20,2001.60 -1996.80,2001.60"/>
     </edge>
     <edge id="BStoS" from="Begin-South" to="South" priority="-1">
-        <lane id="BStoS_0" index="0" speed="13.89" length="1242.80" shape="1.60,-1992.80 1.60,-750.00"/>
+        <lane id="BStoS_0" index="0" speed="13.89" length="1492.80" shape="1.60,-1992.80 1.60,-500.00"/>
     </edge>
     <edge id="BStoSE" from="Begin-South" to="South_East" priority="-1">
         <lane id="BStoSE_0" index="0" speed="13.89" length="1989.60" shape="7.20,-2001.60 1996.80,-2001.60"/>
@@ -218,19 +218,19 @@
         <lane id="BWtoW_0" index="0" speed="13.89" length="1492.80" shape="-1992.80,-1.60 -500.00,-1.60"/>
     </edge>
     <edge id="EtoBE" from="East" to="Begin-East" priority="-1">
-        <lane id="EtoBE_0" index="0" speed="13.89" length="1242.80" shape="750.00,-1.60 1992.80,-1.60"/>
+        <lane id="EtoBE_0" index="0" speed="13.89" length="1492.80" shape="500.00,-1.60 1992.80,-1.60"/>
     </edge>
     <edge id="EtoJ" from="East" to="Junction" priority="-1">
-        <lane id="EtoJ_0" index="0" speed="13.89" length="742.80" shape="750.00,1.60 7.20,1.60"/>
+        <lane id="EtoJ_0" index="0" speed="13.89" length="492.80" shape="500.00,1.60 7.20,1.60"/>
     </edge>
     <edge id="JtoE" from="Junction" to="East" priority="-1">
-        <lane id="JtoE_0" index="0" speed="13.89" length="742.80" shape="7.20,-1.60 750.00,-1.60"/>
+        <lane id="JtoE_0" index="0" speed="13.89" length="492.80" shape="7.20,-1.60 500.00,-1.60"/>
     </edge>
     <edge id="JtoN" from="Junction" to="North" priority="-1">
-        <lane id="JtoN_0" index="0" speed="13.89" length="742.80" shape="1.60,7.20 1.60,750.00"/>
+        <lane id="JtoN_0" index="0" speed="13.89" length="492.80" shape="1.60,7.20 1.60,500.00"/>
     </edge>
     <edge id="JtoS" from="Junction" to="South" priority="-1">
-        <lane id="JtoS_0" index="0" speed="13.89" length="742.80" shape="-1.60,-7.20 -1.60,-750.00"/>
+        <lane id="JtoS_0" index="0" speed="13.89" length="492.80" shape="-1.60,-7.20 -1.60,-500.00"/>
     </edge>
     <edge id="JtoW" from="Junction" to="West" priority="-1">
         <lane id="JtoW_0" index="0" speed="13.89" length="492.80" shape="-7.20,1.60 -500.00,1.60"/>
@@ -248,10 +248,10 @@
         <lane id="NWtoBW_0" index="0" speed="13.89" length="1989.60" shape="-2001.60,1996.80 -2001.60,7.20"/>
     </edge>
     <edge id="NtoBN" from="North" to="Begin-North" priority="-1">
-        <lane id="NtoBN_0" index="0" speed="13.89" length="1242.80" shape="1.60,750.00 1.60,1992.80"/>
+        <lane id="NtoBN_0" index="0" speed="13.89" length="1492.80" shape="1.60,500.00 1.60,1992.80"/>
     </edge>
     <edge id="NtoJ" from="North" to="Junction" priority="-1">
-        <lane id="NtoJ_0" index="0" speed="13.89" length="742.80" shape="-1.60,750.00 -1.60,7.20"/>
+        <lane id="NtoJ_0" index="0" speed="13.89" length="492.80" shape="-1.60,500.00 -1.60,7.20"/>
     </edge>
     <edge id="SEtoBE" from="South_East" to="Begin-East" priority="-1">
         <lane id="SEtoBE_0" index="0" speed="13.89" length="1989.60" shape="2001.60,-1996.80 2001.60,-7.20"/>
@@ -266,10 +266,10 @@
         <lane id="SWtoBW_0" index="0" speed="13.89" length="1989.60" shape="-1998.40,-1996.80 -1998.40,-7.20"/>
     </edge>
     <edge id="StoBS" from="South" to="Begin-South" priority="-1">
-        <lane id="StoBS_0" index="0" speed="13.89" length="1242.80" shape="-1.60,-750.00 -1.60,-1992.80"/>
+        <lane id="StoBS_0" index="0" speed="13.89" length="1492.80" shape="-1.60,-500.00 -1.60,-1992.80"/>
     </edge>
     <edge id="StoJ" from="South" to="Junction" priority="-1">
-        <lane id="StoJ_0" index="0" speed="13.89" length="742.80" shape="1.60,-750.00 1.60,-7.20"/>
+        <lane id="StoJ_0" index="0" speed="13.89" length="492.80" shape="1.60,-500.00 1.60,-7.20"/>
     </edge>
     <edge id="WtoBW" from="West" to="Begin-West" priority="-1">
         <lane id="WtoBW_0" index="0" speed="13.89" length="1492.80" shape="-500.00,1.60 -1992.80,1.60"/>
@@ -279,10 +279,10 @@
     </edge>
 
     <tlLogic id="Junction" type="static" programID="0" offset="0">
-        <phase duration="42" state="GGgrrrGGgrrr"/>
-        <phase duration="3"  state="yyyrrryyyrrr"/>
-        <phase duration="42" state="rrrGGgrrrGGg"/>
-        <phase duration="3"  state="rrryyyrrryyy"/>
+        <phase duration="31" state="GGgrrrGGgrrr"/>
+        <phase duration="6"  state="yyyrrryyyrrr"/>
+        <phase duration="31" state="rrrGGgrrrGGg"/>
+        <phase duration="6"  state="rrryyyrrryyy"/>
     </tlLogic>
 
     <junction id="Begin-East" type="priority" x="2000.00" y="0.00" incLanes="NEtoBE_0 SEtoBE_0 EtoBE_0" intLanes=":Begin-East_0_0 :Begin-East_1_0 :Begin-East_2_0 :Begin-East_6_0 :Begin-East_4_0 :Begin-East_5_0" shape="1996.80,7.20 2003.20,7.20 2003.20,-7.20 1996.80,-7.20 1996.36,-4.98 1995.80,-4.20 1995.02,-3.64 1994.02,-3.31 1992.80,-3.20 1992.80,3.20 1995.02,3.64 1995.80,4.20 1996.36,4.98 1996.69,5.98">
@@ -317,7 +317,7 @@
         <request index="4" response="000000" foes="000010" cont="0"/>
         <request index="5" response="000000" foes="001110" cont="0"/>
     </junction>
-    <junction id="East" type="priority" x="750.00" y="0.00" incLanes="BEtoE_0 JtoE_0" intLanes=":East_0_0 :East_1_0" shape="750.00,3.20 750.00,-3.20 750.00,3.20">
+    <junction id="East" type="priority" x="500.00" y="0.00" incLanes="BEtoE_0 JtoE_0" intLanes=":East_0_0 :East_1_0" shape="500.00,3.20 500.00,-3.20 500.00,3.20">
         <request index="0" response="00" foes="00" cont="0"/>
         <request index="1" response="00" foes="00" cont="0"/>
     </junction>
@@ -327,7 +327,7 @@
         <request index="2" response="0000" foes="1010" cont="0"/>
         <request index="3" response="0101" foes="0101" cont="0"/>
     </junction>
-    <junction id="North" type="priority" x="0.00" y="750.00" incLanes="BNtoN_0 JtoN_0" intLanes=":North_0_0 :North_1_0" shape="-3.20,750.00 3.20,750.00 -3.20,750.00">
+    <junction id="North" type="priority" x="0.00" y="500.00" incLanes="BNtoN_0 JtoN_0" intLanes=":North_0_0 :North_1_0" shape="-3.20,500.00 3.20,500.00 -3.20,500.00">
         <request index="0" response="00" foes="00" cont="0"/>
         <request index="1" response="00" foes="00" cont="0"/>
     </junction>
@@ -339,7 +339,7 @@
         <request index="0" response="00" foes="00" cont="0"/>
         <request index="1" response="00" foes="00" cont="0"/>
     </junction>
-    <junction id="South" type="priority" x="0.00" y="-750.00" incLanes="JtoS_0 BStoS_0" intLanes=":South_0_0 :South_1_0" shape="-3.20,-750.00 3.20,-750.00 -3.20,-750.00">
+    <junction id="South" type="priority" x="0.00" y="-500.00" incLanes="JtoS_0 BStoS_0" intLanes=":South_0_0 :South_1_0" shape="-3.20,-500.00 3.20,-500.00 -3.20,-500.00">
         <request index="0" response="00" foes="00" cont="0"/>
         <request index="1" response="00" foes="00" cont="0"/>
     </junction>
