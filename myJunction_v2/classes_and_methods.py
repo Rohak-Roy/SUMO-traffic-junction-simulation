@@ -148,8 +148,8 @@ def getLaneIDsFromEdgeID(edgeID):
     return laneIDs
 
 # An exponential graph where f(4) = 2, f(6) = 4, f(8) = 8, f(10) = 16, f(12) = 32 and so on.
-def exponential(x, vertical_stretch=1/2, coefficient=1):
-    y = coefficient * (vertical_stretch * np.exp(1/2.88539008178 * x))
+def exponential(x, vertical_stretch=1/2, horizontal_stretch=1/2.88539008178, coefficient=1):
+    y = coefficient * (vertical_stretch * np.exp(horizontal_stretch * x))
     return y
 
 def decayForTimeSinceTLSChange(x):
@@ -191,8 +191,9 @@ def getWeightInfo(edgeInfo1, edgeInfo2):
 
     weight.vehiclesStopped = logarithm(numOfVehiclesStopped)
     weight.waitingTime = logarithm(totalWaitingTime)
+    # weight.waitingTime = exponential(totalWaitingTime, horizontal_stretch=1/73.4)
     weight.CO2Emission = logarithm(totalCO2Emission)
-    weight.predictedVehiclesAtTLS = exponential(numOfPredictedVehiclesAtTLS, vertical_stretch=3)
+    weight.predictedVehiclesAtTLS = exponential(numOfPredictedVehiclesAtTLS, vertical_stretch=2)
 
     weight.vehicles["Car"] = logarithm(numOfCars)
     weight.vehicles["Bus"] = exponential(numOfBuses, 1)
