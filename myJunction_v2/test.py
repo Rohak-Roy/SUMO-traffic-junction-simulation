@@ -1,21 +1,27 @@
-import math
-import numpy as np
-import seaborn as sns
+import csv 
+import pandas as pd
 import matplotlib.pyplot as plt
+import random
+  
+header = ['Vehicles Stopped', 'Total Waiting Time', 'CO2 Emissions Released']
 
-# def exponential(x, vertical_stretch=1/2, coefficient=1):
-#     y = coefficient * (vertical_stretch * np.exp(1/2.88539008178 * x))
-#     return y
+data = []
+with open('some.csv', 'w') as f:
+    writer = csv.writer(f)
+    writer.writerow(header)
 
-# def logarithm(x):
-#     y = np.log2(x + 1)
-#     return y
+    for i in range(10):
+        num1 = random.randint(0, 10)
+        num2 = random.randint(10, 20)
+        num3 = random.randint(20, 30)
+        data = [num1, num2, num3]
+        writer.writerow(data)
 
-# print(logarithm(0))
 
-def exponentialDecayForTrafficPhaseChange(x):
-    y = 30 * (np.exp(-1/3.69269373069 * x))
-    return y
+db = pd.read_csv('some.csv')
+print(db)
 
-inf = float('inf') + 10
-print(exponentialDecayForTrafficPhaseChange(inf))
+db['Total Waiting Time'].plot()
+plt.ylabel("CO2 Emissions")
+plt.xlabel("Seconds")
+plt.show()
