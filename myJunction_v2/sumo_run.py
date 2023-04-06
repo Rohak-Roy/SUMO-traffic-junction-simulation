@@ -18,7 +18,7 @@ weightDifferenceThreshold = 15
 header = ['Number of Vehicles Stopped', 'Total Waiting Time of All Vehicles', 'Total CO2 Emissions Released']
 stepCounter = 0
 
-with open('after.csv', 'w') as f:
+with open('before.csv', 'w') as f:
     writer = csv.writer(f)
     writer.writerow(header)
     while traci.simulation.getMinExpectedNumber() > 0:
@@ -47,15 +47,15 @@ with open('after.csv', 'w') as f:
 
         print(f'\nWeight Difference = {abs(weights_horizontal_flow.totalWeight - weights_vertical_flow.totalWeight)}')
 
-        if abs(weights_horizontal_flow.totalWeight - weights_vertical_flow.totalWeight) > weightDifferenceThreshold:
+        # if abs(weights_horizontal_flow.totalWeight - weights_vertical_flow.totalWeight) > weightDifferenceThreshold:
 
-            if weights_horizontal_flow.totalWeight > weights_vertical_flow.totalWeight:
-                if traci.trafficlight.getPhase("Junction") == 0 or traci.trafficlight.getPhase("Junction") == 3:
-                    traci.trafficlight.setPhase("Junction", 1)
+        #     if weights_horizontal_flow.totalWeight > weights_vertical_flow.totalWeight:
+        #         if traci.trafficlight.getPhase("Junction") == 0 or traci.trafficlight.getPhase("Junction") == 3:
+        #             traci.trafficlight.setPhase("Junction", 1)
 
-            elif weights_vertical_flow.totalWeight > weights_horizontal_flow.totalWeight:
-                if traci.trafficlight.getPhase("Junction") == 2 or traci.trafficlight.getPhase("Junction") == 1:
-                    traci.trafficlight.setPhase("Junction", 3)
+        #     elif weights_vertical_flow.totalWeight > weights_horizontal_flow.totalWeight:
+        #         if traci.trafficlight.getPhase("Junction") == 2 or traci.trafficlight.getPhase("Junction") == 1:
+        #             traci.trafficlight.setPhase("Junction", 3)
 
         writer.writerow([edge_WtoJ.vehiclesStopped + edge_EtoJ.vehiclesStopped + edge_NtoJ.vehiclesStopped + edge_StoJ.vehiclesStopped, 
                          edge_WtoJ.waitingTime + edge_EtoJ.waitingTime + edge_NtoJ.waitingTime + edge_StoJ.waitingTime, 
