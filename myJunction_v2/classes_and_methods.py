@@ -1,5 +1,6 @@
 import traci
 import numpy as np
+import matplotlib.pyplot as plt
 
 timeForPredictingVehAtTLS = 10
 
@@ -224,3 +225,39 @@ def printWeightInfo(weightInfo, title=""):
     print(f'Weight due to number of bicycles = {weightInfo.vehicles["Bicycle"]}')
     print(f'Weight due to number of vehicles predicted at traffic light = {weightInfo.predictedVehiclesAtTLS}')
     print(f'Total Weight = {weightInfo.totalWeight}')
+
+def displayCumulative(dataFrame1, dataFrame2, title):
+    y1, y2 = [], []
+    j1, j2 = 0, 0
+    fig = plt.figure()
+
+    for idx in range(len(dataFrame1)):
+        j1 += dataFrame1[idx]
+        y1.append(j1)
+
+    for idx in range(len(dataFrame2)):
+        j2 += dataFrame2[idx]
+        y2.append(j2)
+
+    x1 = np.arange(0, len(y1))
+    x2 = np.arange(0, len(y2))
+
+    fig.add_subplot(1, 2, 1)
+    plt.plot(x1, y1)
+    plt.xlabel('Seconds Elapsed.')
+    plt.ylabel(f'Cumulative {title} - Before.')
+
+    fig.add_subplot(1, 2, 2)
+    plt.plot(x2, y2)
+    plt.xlabel('Seconds Elapsed.')
+    plt.ylabel(f'Cumulative {title} - After.')
+    
+    plt.show()
+
+def percentChange(dataFrame_before, dataFrame_after, columnName):
+    sum1 = dataFrame_before[columnName].sum()
+    sum2 = dataFrame_after[columnName].sum()
+    difference = sum1 - sum2
+    percentChange = (difference/sum1) * 100
+
+    return round(percentChange, 2)
