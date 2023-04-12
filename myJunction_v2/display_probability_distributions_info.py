@@ -43,11 +43,11 @@ def displayGraphs(carProb, heavyVehProb, lightweightVehProb, bicycleProb, std_de
 
 def getRouteId(route1, route2, route3, route4):
     num = getUniformDistribution(0, 1)
-    if num < 0.25:
+    if num < 0.35:
         return route1
-    if num < 0.50:
+    if num < 0.70:
         return route2
-    if num < 0.75:
+    if num < 0.85:
         return route3
     if num < 1.00:
         return route4

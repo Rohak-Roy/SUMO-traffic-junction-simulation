@@ -8,6 +8,7 @@ import os
 import sys
 from sumolib import checkBinary
 import optparse
+import matplotlib.pyplot as plt
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
@@ -21,44 +22,50 @@ def getDateTime():
     DATIME = currentDT.strftime("%Y-%m-%d %H:%M:%S")
     return DATIME
 
-sumoCmd = ["sumo-gui", "-c", "data\experimenting.sumocfg"]
+sumoCmd = ["sumo", "-c", "data\experimenting.sumocfg"]
 traci.start(sumoCmd)
 
 setTime = 5
 counter = 0
+counterList = []
+CO2List = []
+speedList = []
+
 while traci.simulation.getMinExpectedNumber() > 0:
 
     traci.simulationStep()
+    
     counter += 1
     print("\nIteration = ", counter)
 
     allVehicles = traci.edge.getLastStepVehicleIDs("WtoJ")
     print("VEHICLES ON 'WtoJ' EDGE = ", allVehicles)
 
-    if len(allVehicles) != 0:
-        nextTLS = list(map(traci.vehicle.getNextTLS, allVehicles))
+    if len(allVehicles) == 0:
+        break
 
-        distancesFromTLS = [item[0][2] for item in nextTLS]
-        print(f'Distances from TLS are = {distancesFromTLS}')
+    CO2 = traci.edge.getCO2Emission("WtoJ")
+    print("Carbon Emissions = ", CO2)
 
-        vehicleSpeeds = list(map(traci.vehicle.getSpeed, allVehicles))
-        print(f'Vehicle speeds are = {vehicleSpeeds}')
+    speed = traci.vehicle.getSpeed(allVehicles[0])
+    print("Speed = ", speed)
+    
+    CO2List.append(CO2)
+    counterList.append(counter)
+    speedList.append(speed)
 
-        filteredVehicleSpeeds = [item for item in vehicleSpeeds if item > 3]
-        print(f'Filtered speed of vehicles are = {filteredVehicleSpeeds}')
+fig = plt.figure()
 
-        distanceCoveredInGivenTime = [item * 10 for item in filteredVehicleSpeeds]
-        print(f'Distance vehicles will cover in 10 secs = {distanceCoveredInGivenTime}')
+fig.add_subplot(1, 2, 1)
+plt.plot(counterList, CO2List)
+plt.title("CO2 vs Time")
 
-        predictedDistanceFromTLS = [(x - y) for x,y in zip(distancesFromTLS, distanceCoveredInGivenTime)]
-        print(f'Predicted distances of vehicles from TLS after 10 secs = {predictedDistanceFromTLS}')
+fig.add_subplot(1, 2, 2)
+plt.title("Speed vs Time")
+plt.plot(counterList, speedList)
 
-        numOfPredictedVehiclesAtTLS = len([item for item in predictedDistanceFromTLS if item < 1.1])
-        print(f'Number of vehicles predicted to be at the traffic light after 10 secs = {numOfPredictedVehiclesAtTLS}')
+plt.show()
 
-    else:
-        print(0)
-       
 traci.close()
 
 #DISTANCE FROM TRAFFIC LIGHT SIGNAL ON SUMO EVEN AFTER CAR HAS REACHED THE TLS = 1.0011215737891064

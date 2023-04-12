@@ -279,10 +279,10 @@
     </edge>
 
     <tlLogic id="Junction" type="static" programID="0" offset="0">
-        <phase duration="31" state="GGgrrrGGgrrr"/>
-        <phase duration="6"  state="yyyrrryyyrrr"/>
-        <phase duration="31" state="rrrGGgrrrGGg"/>
-        <phase duration="6"  state="rrryyyrrryyy"/>
+        <phase duration="40" state="GGgrrrGGgrrr"/>
+        <phase duration="5"  state="yyyrrryyyrrr"/>
+        <phase duration="40" state="rrrGGgrrrGGg"/>
+        <phase duration="5"  state="rrryyyrrryyy"/>
     </tlLogic>
 
     <junction id="Begin-East" type="priority" x="2000.00" y="0.00" incLanes="NEtoBE_0 SEtoBE_0 EtoBE_0" intLanes=":Begin-East_0_0 :Begin-East_1_0 :Begin-East_2_0 :Begin-East_6_0 :Begin-East_4_0 :Begin-East_5_0" shape="1996.80,7.20 2003.20,7.20 2003.20,-7.20 1996.80,-7.20 1996.36,-4.98 1995.80,-4.20 1995.02,-3.64 1994.02,-3.31 1992.80,-3.20 1992.80,3.20 1995.02,3.64 1995.80,4.20 1996.36,4.98 1996.69,5.98">

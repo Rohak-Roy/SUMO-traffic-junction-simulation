@@ -6,7 +6,7 @@ from classes_and_methods import displayCumulative, percentChange
 df_after = pd.read_csv('after.csv')
 df_before = pd.read_csv('before.csv')
 
-figure = plt.figure()
+# figure = plt.figure()
 
 # figure.add_subplot(1, 2, 1)
 # df_before['Number of Vehicles Stopped'].plot()
@@ -50,4 +50,4 @@ displayCumulative(df_before['Total Waiting Time of All Vehicles'], df_after['Tot
 displayCumulative(df_before['Total CO2 Emissions Released'], df_after['Total CO2 Emissions Released'], 'Total CO2 Emissions Released'), 
 
 
-# print(percentChange(df_before, df_after, 'Number of Vehicles Stopped'))
+print(percentChange(df_before, df_after, 'Total CO2 Emissions Released'))
