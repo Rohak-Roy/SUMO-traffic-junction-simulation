@@ -194,13 +194,13 @@ def getWeightInfo(edgeInfo1, edgeInfo2):
     # weight.waitingTime = logarithm(totalWaitingTime)
     weight.waitingTime = exponential(totalWaitingTime, horizontal_stretch=1/53.4)
     weight.CO2Emission = logarithm(totalCO2Emission)
-    weight.predictedVehiclesAtTLS = exponential(numOfPredictedVehiclesAtTLS, vertical_stretch=2) if numOfPredictedVehiclesAtTLS != 0 else 0 
+    weight.predictedVehiclesAtTLS = exponential(numOfPredictedVehiclesAtTLS, vertical_stretch=2)
 
     weight.vehicles["Car"] = logarithm(numOfCars)
-    weight.vehicles["Bus"] = exponential(numOfBuses, coefficient = 1)
+    weight.vehicles["Bus"] = exponential(numOfBuses, 1)
     weight.vehicles["Truck"] = exponential(numOfTrucks, 1)
-    weight.vehicles["Motorcycles"] = exponential(numOfMotorcycles, coefficient = 0.25)
-    weight.vehicles["Bicycles"] = exponential(numOfBicycles, coefficient = 0.125)
+    weight.vehicles["Motorcycles"] = exponential(numOfMotorcycles, 0.25)
+    weight.vehicles["Bicycles"] = exponential(numOfBicycles, 0.125)
     weight.totalWeight = getTotalWeight(weight)
 
     return weight

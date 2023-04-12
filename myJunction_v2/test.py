@@ -2,26 +2,14 @@ import csv
 import pandas as pd
 import matplotlib.pyplot as plt
 import random
-  
-header = ['Vehicles Stopped', 'Total Waiting Time', 'CO2 Emissions Released']
+import classes_and_methods as m
+import numpy as np
+import math
 
-data = []
-with open('some.csv', 'w') as f:
-    writer = csv.writer(f)
-    writer.writerow(header)
+def exponential(x, vertical_stretch=1/2, horizontal_stretch=1/2.88539008178, coefficient=1):
+    y = coefficient * (vertical_stretch * np.exp(horizontal_stretch * x))
+    return y
 
-    for i in range(10):
-        num1 = random.randint(0, 10)
-        num2 = random.randint(10, 20)
-        num3 = random.randint(20, 30)
-        data = [num1, num2, num3]
-        writer.writerow(data)
+y = 1/1.39 * np.exp(-1/15 * (0 - 5))
 
-
-db = pd.read_csv('some.csv')
-print(db)
-
-db['Total Waiting Time'].plot()
-plt.ylabel("CO2 Emissions")
-plt.xlabel("Seconds")
-plt.show()
+print (m.exponential(24, horizontal_stretch=1/10))
