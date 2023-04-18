@@ -191,13 +191,10 @@ def getWeightInfo(edgeInfo1, edgeInfo2):
     numOfPredictedVehiclesAtTLS = edgeInfo1.predictedVehiclesAtTLS["Number"] + edgeInfo2.predictedVehiclesAtTLS["Number"]
 
     weight.vehiclesStopped = logarithm(numOfVehiclesStopped)
-
-    waitingTime_to_vehStopped_ratio = ((totalWaitingTime / numOfVehiclesStopped) / 60) if numOfVehiclesStopped != 0 else 0
-    weight.waitingTime = exponential(waitingTime_to_vehStopped_ratio, vertical_stretch=1/53, horizontal_stretch=3.98)
+    # waitingTime_to_vehStopped_ratio = ((totalWaitingTime / numOfVehiclesStopped) / 60) if numOfVehiclesStopped != 0 else 0
+    # weight.waitingTime = exponential(waitingTime_to_vehStopped_ratio, vertical_stretch=1/53, horizontal_stretch=3.98)
     # weight.waitingTime = logarithm(totalWaitingTime)
-    # weight.waitingTime = exponential(totalWaitingTime, horizontal_stretch=1/53.4)
-
-
+    weight.waitingTime = exponential(totalWaitingTime, horizontal_stretch=1/50)
     weight.CO2Emission = logarithm(totalCO2Emission)
     weight.predictedVehiclesAtTLS = exponential(numOfPredictedVehiclesAtTLS, vertical_stretch=2) if numOfPredictedVehiclesAtTLS != 0 else 0
 
@@ -266,3 +263,27 @@ def percentChange(dataFrame_before, dataFrame_after, columnName):
     percentChange = (difference/sum1) * 100
 
     return round(percentChange, 2)
+
+def getData(edgeInfo1, edgeInfo2, edgeInfo3, edgeInfo4):
+    numOfVehiclesStopped_horizontal = edgeInfo1.vehiclesStopped + edgeInfo2.vehiclesStopped
+    totalWaitingTime_horizontal = edgeInfo1.waitingTime + edgeInfo2.waitingTime
+    totalCO2Emission_horizontal = edgeInfo1.CO2Emission + edgeInfo2.CO2Emission
+    numOfCars_horizontal = edgeInfo1.carInfo["Number"] + edgeInfo2.carInfo["Number"]
+    numOfBuses_horizontal = edgeInfo1.busInfo["Number"] + edgeInfo2.busInfo["Number"]
+    numOfTrucks_horizontal = edgeInfo1.truckInfo["Number"] + edgeInfo2.truckInfo["Number"]
+    numOfMotorcycles_horizontal = edgeInfo1.motorcycleInfo["Number"] + edgeInfo2.motorcycleInfo["Number"]
+    numOfBicycles_horizontal = edgeInfo1.bicycleInfo["Number"] + edgeInfo2.bicycleInfo["Number"]
+    numOfPredictedVehiclesAtTLS_horizontal = edgeInfo1.predictedVehiclesAtTLS["Number"] + edgeInfo2.predictedVehiclesAtTLS["Number"]
+
+    numOfVehiclesStopped_vertical = edgeInfo3.vehiclesStopped + edgeInfo4.vehiclesStopped
+    totalWaitingTime_vertical = edgeInfo3.waitingTime + edgeInfo4.waitingTime
+    totalCO2Emission_vertical = edgeInfo3.CO2Emission + edgeInfo4.CO2Emission
+    numOfCars_vertical = edgeInfo3.carInfo["Number"] + edgeInfo4.carInfo["Number"]
+    numOfBuses_vertical = edgeInfo3.busInfo["Number"] + edgeInfo4.busInfo["Number"]
+    numOfTrucks_vertical = edgeInfo3.truckInfo["Number"] + edgeInfo4.truckInfo["Number"]
+    numOfMotorcycles_vertical = edgeInfo3.motorcycleInfo["Number"] + edgeInfo4.motorcycleInfo["Number"]
+    numOfBicycles_vertical = edgeInfo3.bicycleInfo["Number"] + edgeInfo4.bicycleInfo["Number"]
+    numOfPredictedVehiclesAtTLS_vertical = edgeInfo3.predictedVehiclesAtTLS["Number"] + edgeInfo4.predictedVehiclesAtTLS["Number"]
+
+    return [numOfVehiclesStopped_horizontal, totalWaitingTime_horizontal, totalCO2Emission_horizontal, numOfPredictedVehiclesAtTLS_horizontal, numOfCars_horizontal, numOfBuses_horizontal, numOfTrucks_horizontal, numOfMotorcycles_horizontal, numOfBicycles_horizontal,
+            numOfVehiclesStopped_vertical, totalWaitingTime_vertical, totalCO2Emission_vertical, numOfPredictedVehiclesAtTLS_vertical, numOfCars_vertical, numOfBuses_vertical, numOfTrucks_vertical, numOfMotorcycles_vertical, numOfBicycles_vertical]

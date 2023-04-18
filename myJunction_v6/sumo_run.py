@@ -3,7 +3,7 @@ import traci
 import os
 import sys
 import csv
-from classes_and_methods import printEdgeInfo, getEdgeInfo, getWeightInfo, printWeightInfo
+from classes_and_methods import printEdgeInfo, getEdgeInfo, getWeightInfo, printWeightInfo, getData
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
@@ -16,11 +16,16 @@ traci.start(sumoCmd)
 
 weightDifferenceThreshold = 15
 header = ['Number of Vehicles Stopped', 'Total Waiting Time of All Vehicles', 'Total CO2 Emissions Released']
+header_2 = ['Number Of Vehicles Stopped - Horizontal', 'Total Waiting Time - Horizontal', 'Carbon Emissions Released - Horizontal', 'Number of Vehicles Predicted at Traffic Light - Horizontal', 'Number of Cars - Horizontal', 'Number of Buses - Horizontal', 'Number of Trucks - Horizontal', 'Number of Motorcycles - Horizontal', 'Number of Bicycles - Horizontal',
+            'Number Of Vehicles Stopped - Vertical', 'Total Waiting Time - Vertical', 'Carbon Emissions Released - Vertical', 'Number of Vehicles Predicted at Traffic Light - Vertical', 'Number of Cars - Vertical', 'Number of Buses - Vertical', 'Number of Trucks - Vertical', 'Number of Motorcycles - Vertical', 'Number of Bicycles - Vertical', 'Traffic Phase']
 stepCounter = 0
 
-# with open('before.csv', 'w') as f:
-#     writer = csv.writer(f)
-# writer.writerow(header)
+# with open('data.csv', 'w') as f:
+#     # writer = csv.writer(f)
+#     # writer.writerow(header)
+
+    # data_writer = csv.writer(f)
+    # data_writer.writerow(header_2)
 while traci.simulation.getMinExpectedNumber() > 0:
 
     traci.simulationStep()
@@ -47,6 +52,7 @@ while traci.simulation.getMinExpectedNumber() > 0:
 
     print(f'\nWeight Difference = {abs(weights_horizontal_flow.totalWeight - weights_vertical_flow.totalWeight)}')
 
+
     if abs(weights_horizontal_flow.totalWeight - weights_vertical_flow.totalWeight) > weightDifferenceThreshold:
 
         if weights_horizontal_flow.totalWeight > weights_vertical_flow.totalWeight:
@@ -57,8 +63,19 @@ while traci.simulation.getMinExpectedNumber() > 0:
             if traci.trafficlight.getPhase("Junction") == 2 or traci.trafficlight.getPhase("Junction") == 1:
                 traci.trafficlight.setPhase("Junction", 3)
 
-    # writer.writerow([edge_WtoJ.vehiclesStopped + edge_EtoJ.vehiclesStopped + edge_NtoJ.vehiclesStopped + edge_StoJ.vehiclesStopped, 
-    #                  edge_WtoJ.waitingTime + edge_EtoJ.waitingTime + edge_NtoJ.waitingTime + edge_StoJ.waitingTime, 
-    #                  edge_WtoJ.CO2Emission + edge_EtoJ.CO2Emission + edge_NtoJ.CO2Emission + edge_StoJ.CO2Emission])
-    
+    trafficPhase = traci.trafficlight.getPhase("Junction")
+
+    if trafficPhase == 0 or trafficPhase == 3:
+        trafficPhase = 0
+    if trafficPhase == 1 or trafficPhase == 2:
+        trafficPhase = 1
+
+        # data = getData(edge_WtoJ, edge_EtoJ, edge_NtoJ, edge_StoJ)
+        # data.append(trafficPhase)
+        # data_writer.writerow(data)
+
+        # writer.writerow([edge_WtoJ.vehiclesStopped + edge_EtoJ.vehiclesStopped + edge_NtoJ.vehiclesStopped + edge_StoJ.vehiclesStopped, 
+        #                 edge_WtoJ.waitingTime + edge_EtoJ.waitingTime + edge_NtoJ.waitingTime + edge_StoJ.waitingTime, 
+        #                 edge_WtoJ.CO2Emission + edge_EtoJ.CO2Emission + edge_NtoJ.CO2Emission + edge_StoJ.CO2Emission])
+
 traci.close()
