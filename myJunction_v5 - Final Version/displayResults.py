@@ -6,7 +6,7 @@ from classes_and_methods import displayCumulative, percentChange
 df_after = pd.read_csv('after.csv')
 df_before = pd.read_csv('before.csv')
 
-# figure = plt.figure()
+figure = plt.figure()
 
 # figure.add_subplot(1, 2, 1)
 # df_before['Number of Vehicles Stopped'].plot()
