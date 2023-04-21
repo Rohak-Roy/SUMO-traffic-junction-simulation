@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from classes_and_methods import displayCumulative, percentChange
 
-df_after = pd.read_csv('after.csv')
+df_after = pd.read_csv('after_ML.csv')
 df_before = pd.read_csv('before.csv')
 
 # figure = plt.figure()
