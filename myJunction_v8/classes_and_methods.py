@@ -191,9 +191,6 @@ def getWeightInfo(edgeInfo1, edgeInfo2):
     numOfPredictedVehiclesAtTLS = edgeInfo1.predictedVehiclesAtTLS["Number"] + edgeInfo2.predictedVehiclesAtTLS["Number"]
 
     weight.vehiclesStopped = logarithm(numOfVehiclesStopped)
-    # waitingTime_to_vehStopped_ratio = ((totalWaitingTime / numOfVehiclesStopped) / 60) if numOfVehiclesStopped != 0 else 0
-    # weight.waitingTime = exponential(waitingTime_to_vehStopped_ratio, vertical_stretch=1/53, horizontal_stretch=3.98)
-    # weight.waitingTime = logarithm(totalWaitingTime)
     weight.waitingTime = exponential(totalWaitingTime, horizontal_stretch=1/50)
     weight.CO2Emission = logarithm(totalCO2Emission)
     weight.predictedVehiclesAtTLS = exponential(numOfPredictedVehiclesAtTLS, vertical_stretch=2) if numOfPredictedVehiclesAtTLS != 0 else 0

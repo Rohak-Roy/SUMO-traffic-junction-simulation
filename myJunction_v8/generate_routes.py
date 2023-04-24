@@ -2,7 +2,7 @@ from numpy import random
 
 def generate_routefile():
     random.seed(42)
-    steps = 3000
+    steps = 1000
     
     with open("data\myJunction.rou.xml", "w") as routes:
         print("""<routes>

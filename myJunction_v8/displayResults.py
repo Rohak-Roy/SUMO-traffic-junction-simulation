@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from classes_and_methods import displayCumulative, percentChange
 
-df_after = pd.read_csv('after.csv')
+df_after = pd.read_csv('after_ML.csv')
 df_before = pd.read_csv('before.csv')
 
 # figure = plt.figure()
@@ -45,9 +45,9 @@ df_before = pd.read_csv('before.csv')
 # plt.show()
 
 
-displayCumulative(df_before['Number of Vehicles Stopped'], df_after['Number of Vehicles Stopped'], 'Number of Vehicles Stopped')
-displayCumulative(df_before['Total Waiting Time of All Vehicles'], df_after['Total Waiting Time of All Vehicles'], 'Total Waiting Time of All Vehicles' )
-displayCumulative(df_before['Total CO2 Emissions Released'], df_after['Total CO2 Emissions Released'], 'Total CO2 Emissions Released')
+# displayCumulative(df_before['Number of Vehicles Stopped'], df_after['Number of Vehicles Stopped'], 'Number of Vehicles Stopped')
+# displayCumulative(df_before['Total Waiting Time of All Vehicles'], df_after['Total Waiting Time of All Vehicles'], 'Total Waiting Time of All Vehicles' )
+# displayCumulative(df_before['Total CO2 Emissions Released'], df_after['Total CO2 Emissions Released'], 'Total CO2 Emissions Released')
 
 print(percentChange(df_before, df_after, 'Number of Vehicles Stopped'))
 print(percentChange(df_before, df_after, 'Total Waiting Time of All Vehicles'))
