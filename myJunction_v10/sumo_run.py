@@ -16,6 +16,9 @@ else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 
 header = ['Number of Vehicles Stopped', 'Total Waiting Time of All Vehicles', 'Total CO2 Emissions Released']
+header_2 = ['Number Of Vehicles Stopped - Horizontal', 'Total Waiting Time - Horizontal', 'Carbon Emissions Released - Horizontal', 'Carbon Emissions Released Squared - Horizontal', 'Carbon Emissions Released Cubed - Horizontal', 'Number of Vehicles Predicted at Traffic Light - Horizontal', 'Number of Cars - Horizontal', 'Number of Buses - Horizontal', 'Number of Trucks - Horizontal', 'Number of Motorcycles - Horizontal', 'Number of Bicycles - Horizontal',
+            'Number Of Vehicles Stopped - Vertical', 'Total Waiting Time - Vertical', 'Carbon Emissions Released - Vertical', 'Carbon Emissions Released Squared - Vertical', 'Carbon Emissions Released Cubed - Vertical', 'Number of Vehicles Predicted at Traffic Light - Vertical', 'Number of Cars - Vertical', 'Number of Buses - Vertical', 'Number of Trucks - Vertical', 'Number of Motorcycles - Vertical', 'Number of Bicycles - Vertical', 'Time Since Signal Change', 'Traffic Phase']
+
 sumoCmd = ["sumo", "-c", "data\myJunction.sumocfg"]
 traci.start(sumoCmd)
 
@@ -23,12 +26,12 @@ stepCounter = 0
 timeSinceTLSChange = 0
 weightDifferenceThreshold = 15
 
-df = pd.read_csv('mean_and_std.csv')
+df = pd.read_csv('mean_and_std_CO2_cubed.csv')
 mean_and_std = df.to_numpy()
 train_mean = mean_and_std[0]
 train_std = mean_and_std[1]
 
-with open('after_ML.csv', 'w') as f:
+with open('after_ML', 'w') as f:
     writer = csv.writer(f)
     writer.writerow(header)
 
@@ -65,12 +68,24 @@ with open('after_ML.csv', 'w') as f:
         #     if weights_horizontal_flow.totalWeight > weights_vertical_flow.totalWeight:
         #         if traci.trafficlight.getPhase("Junction") == 0 or traci.trafficlight.getPhase("Junction") == 3:
         #             traci.trafficlight.setPhase("Junction", 1)
+        #             timeSinceTLSChange = 0
 
         #     elif weights_vertical_flow.totalWeight > weights_horizontal_flow.totalWeight:
         #         if traci.trafficlight.getPhase("Junction") == 2 or traci.trafficlight.getPhase("Junction") == 1:
         #             traci.trafficlight.setPhase("Junction", 3)
+        #             timeSinceTLSChange = 0
 
-        model_path = "my_best_model_v5.hdf5"
+        # currentTrafficPhase = traci.trafficlight.getPhase("Junction")
+        # if currentTrafficPhase == 0 or currentTrafficPhase == 3:
+        #     currentTrafficPhase = 0
+        # elif currentTrafficPhase == 1 or currentTrafficPhase == 2:
+        #     currentTrafficPhase = 1
+        # data = getData(edge_WtoJ, edge_EtoJ, edge_NtoJ, edge_StoJ)
+        # data.append(timeSinceTLSChange)
+        # data.append(currentTrafficPhase)
+        # writer.writerow(data)
+
+        model_path = "my_best_model_v7.hdf5"
         model = keras.models.load_model(model_path)
         
         data = getData(edge_WtoJ, edge_EtoJ, edge_NtoJ, edge_StoJ)
@@ -78,10 +93,8 @@ with open('after_ML.csv', 'w') as f:
         data = np.array([data])
 
         data_norm = (data - train_mean) / train_std
-        print(f'Original data: {data}, \nNormalized data: {data_norm}')
 
         prediction = tf.round(model.predict(data_norm))
-        print(f'MODEL LAYERS =  {model.layers}')
 
         currentPhase = traci.trafficlight.getPhase("Junction")
         if currentPhase == 0 or currentPhase == 3:

@@ -253,6 +253,35 @@ def displayCumulative(dataFrame1, dataFrame2, title):
     
     plt.show()
 
+def displayCumulative_at_once(dataFrame1, dataFrame2, dataFrame3, title):
+    y1, y2, y3 = [], [], []
+    j1, j2, j3 = 0, 0, 0
+    fig = plt.figure()
+
+    for idx in range(len(dataFrame1)):
+        j1 += dataFrame1[idx]
+        y1.append(j1)
+
+    for idx in range(len(dataFrame2)):
+        j2 += dataFrame2[idx]
+        y2.append(j2)
+
+    for idx in range(len(dataFrame3)):
+        j3 += dataFrame3[idx]
+        y3.append(j3)
+    
+    x1 = np.arange(0, len(y1))
+    x2 = np.arange(0, len(y2))
+    x3 = np.arange(0, len(y3))
+
+    plt.plot(x1, y1, label='Without Any Model', color='red')
+    plt.plot(x2, y2, label='Weighted Sum Model', color='blue')
+    plt.plot(x3, y3, label='Deep Neural Network', color='green')
+    plt.xlabel('Seconds Elapsed')
+    plt.ylabel(f'Cumulative {title}')
+    plt.legend()
+    plt.show()
+
 def percentChange(dataFrame_before, dataFrame_after, columnName):
     sum1 = dataFrame_before[columnName].sum()
     sum2 = dataFrame_after[columnName].sum()
@@ -265,7 +294,6 @@ def getData(edgeInfo1, edgeInfo2, edgeInfo3, edgeInfo4):
     numOfVehiclesStopped_horizontal = edgeInfo1.vehiclesStopped + edgeInfo2.vehiclesStopped
     totalWaitingTime_horizontal = edgeInfo1.waitingTime + edgeInfo2.waitingTime
     totalCO2Emission_horizontal = edgeInfo1.CO2Emission + edgeInfo2.CO2Emission
-    totalCO2Emission_squared_horizontal = totalCO2Emission_horizontal * totalCO2Emission_horizontal
     numOfCars_horizontal = edgeInfo1.carInfo["Number"] + edgeInfo2.carInfo["Number"]
     numOfBuses_horizontal = edgeInfo1.busInfo["Number"] + edgeInfo2.busInfo["Number"]
     numOfTrucks_horizontal = edgeInfo1.truckInfo["Number"] + edgeInfo2.truckInfo["Number"]
@@ -276,7 +304,6 @@ def getData(edgeInfo1, edgeInfo2, edgeInfo3, edgeInfo4):
     numOfVehiclesStopped_vertical = edgeInfo3.vehiclesStopped + edgeInfo4.vehiclesStopped
     totalWaitingTime_vertical = edgeInfo3.waitingTime + edgeInfo4.waitingTime
     totalCO2Emission_vertical = edgeInfo3.CO2Emission + edgeInfo4.CO2Emission
-    totalCO2Emission_squared_vertical = totalCO2Emission_vertical * totalCO2Emission_vertical
     numOfCars_vertical = edgeInfo3.carInfo["Number"] + edgeInfo4.carInfo["Number"]
     numOfBuses_vertical = edgeInfo3.busInfo["Number"] + edgeInfo4.busInfo["Number"]
     numOfTrucks_vertical = edgeInfo3.truckInfo["Number"] + edgeInfo4.truckInfo["Number"]
@@ -284,5 +311,5 @@ def getData(edgeInfo1, edgeInfo2, edgeInfo3, edgeInfo4):
     numOfBicycles_vertical = edgeInfo3.bicycleInfo["Number"] + edgeInfo4.bicycleInfo["Number"]
     numOfPredictedVehiclesAtTLS_vertical = edgeInfo3.predictedVehiclesAtTLS["Number"] + edgeInfo4.predictedVehiclesAtTLS["Number"]
 
-    return [numOfVehiclesStopped_horizontal, totalWaitingTime_horizontal, totalCO2Emission_horizontal, totalCO2Emission_squared_horizontal, numOfPredictedVehiclesAtTLS_horizontal, numOfCars_horizontal, numOfBuses_horizontal, numOfTrucks_horizontal, numOfMotorcycles_horizontal, numOfBicycles_horizontal,
-            numOfVehiclesStopped_vertical, totalWaitingTime_vertical, totalCO2Emission_vertical, totalCO2Emission_squared_vertical, numOfPredictedVehiclesAtTLS_vertical, numOfCars_vertical, numOfBuses_vertical, numOfTrucks_vertical, numOfMotorcycles_vertical, numOfBicycles_vertical]
+    return [numOfVehiclesStopped_horizontal, totalWaitingTime_horizontal, totalCO2Emission_horizontal, numOfPredictedVehiclesAtTLS_horizontal, numOfCars_horizontal, numOfBuses_horizontal, numOfTrucks_horizontal, numOfMotorcycles_horizontal, numOfBicycles_horizontal,
+            numOfVehiclesStopped_vertical, totalWaitingTime_vertical, totalCO2Emission_vertical, numOfPredictedVehiclesAtTLS_vertical, numOfCars_vertical, numOfBuses_vertical, numOfTrucks_vertical, numOfMotorcycles_vertical, numOfBicycles_vertical]
